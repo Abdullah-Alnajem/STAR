@@ -1,10 +1,11 @@
 <?php
-include 'db_connection.php'; // Verbindung zur Datenbank herstellen
 session_start();
+include 'db_connection.php'; // Verbindung zur Datenbank herstellen
+
 
 // Verarbeitung des POST-Requests
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Prüfen, ob die Eingabe gesetzt ist
+    // Prï¿½fen, ob die Eingabe gesetzt ist
     if (isset($_POST['benutzername_email']) && isset($_POST['password'])) {
         $benutzername_email = $_POST['benutzername_email'];
         $password = $_POST['password'];
@@ -16,15 +17,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
         $result = $stmt->get_result();
 
-        // Prüfen, ob Benutzer gefunden wurde
+        // Prï¿½fen, ob Benutzer gefunden wurde
         if ($result->num_rows > 0) {
             // Benutzer gefunden
             $user = $result->fetch_assoc();
 
-            // Passwort überprüfen
+            // Passwort ï¿½berprï¿½fen
             if (password_verify($password, $user['password'])) {
                 // Login erfolgreich - Benutzer in die Session speichern
-                $_SESSION['user_id'] = $user['user_id'];
+                $_SESSION['user_ID'] = $user['user_ID'];
                 $_SESSION['username'] = $user['benutzername'];
                 $_SESSION['role'] = $user['role'];
 

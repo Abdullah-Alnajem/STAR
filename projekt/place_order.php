@@ -2,11 +2,12 @@
 session_start();
 include 'db_connection.php'; // Verbindung zur Datenbank herstellen
 
-// Uberprüfung, ob der Benutzer eingeloggt ist
-if (!isset($_SESSION['user_id'])) {
+// Uberprï¿½fung, ob der Benutzer eingeloggt ist
+if (!isset($_SESSION['user_ID'])) {
     header("Location: Anmelden.php");
     exit();
 }
+
 
 // Initialisierung der Message-Variable
 $message = ''; // Initialisierung, um die Warnung zu vermeiden
@@ -18,14 +19,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $totalPrice = floatval($_POST['totalPrice']);
     $packages = intval($_POST['packages']);
     $users = intval($_POST['users']);
-    $user_id = $_SESSION['user_id']; 
+    $user_id = $_SESSION['user_ID'];
 
     // Zus?tzliche Informationen
     $artikel_name = $_POST['artikel_name']; // Name des Artikels
     $grosse = $_POST['grosse']; // Gr??e des Artikels
     $base_price = floatval($_POST['base_price']); // Basispreis
 
-    // Berechnungen für zus?tzliche Anzahl und Preis
+    // Berechnungen fï¿½r zus?tzliche Anzahl und Preis
     $zusatzanzahl = $users - ($packages * 3); // Zus?tzliche Benutzer
     $zusatzpreis = $totalPrice - ($packages * $base_price); // Zusatzpreis
 
@@ -36,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->begin_transaction();
 
     try {
-        // Rechnung in die Tabelle 'rechnung' einfügen
+        // Rechnung in die Tabelle 'rechnung' einfï¿½gen
         $sql_invoice = "INSERT INTO rechnung (user_ID, Datum) VALUES (?, ?)";
         $stmt_invoice = $conn->prepare($sql_invoice);
         $stmt_invoice->bind_param("is", $user_id, $datum);
@@ -44,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $rechnung_id = $stmt_invoice->insert_id; // ID der neuen Rechnung
         $stmt_invoice->close();
 
-        // Artikel in die Tabelle 'artikel' einfügen (ohne Preis)
+        // Artikel in die Tabelle 'artikel' einfï¿½gen (ohne Preis)
         $sql_artikel = "INSERT INTO artikel (Artikelname, Benutzeranzahl, Grosse, Zusatzanzahl, Zusatzpreis)
                         VALUES (?, ?, ?, ?, ?)";
         $stmt_artikel = $conn->prepare($sql_artikel);
@@ -53,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $artikel_id = $stmt_artikel->insert_id; // ID des neuen Artikels
         $stmt_artikel->close();
 
-        // Rechnung Details in die Tabelle 'rechnung_details' einfügen (mit Preis)
+        // Rechnung Details in die Tabelle 'rechnung_details' einfï¿½gen (mit Preis)
         $sql_details = "INSERT INTO rechnung_details (Rechnung_ID, Artikel_ID, menge, Preis) VALUES (?, ?, ?, ?)";
         $stmt_details = $conn->prepare($sql_details);
         $stmt_details->bind_param("iiid", $rechnung_id, $artikel_id, $packages, $totalPrice); // 'd' for float/double
@@ -91,6 +92,7 @@ $conn->close();
         <div class="message"><?php echo $message; ?></div>
         <button class="back-button" onclick="window.location.href='Home.php';">Zur&uuml;ck zur Startseite</button>
     </div>
+
 
 </body>
 </html>
