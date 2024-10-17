@@ -61,7 +61,7 @@
             <input type="hidden" id="packagesInput" name="packages" value="1">
             <input type="hidden" id="usersInput" name="users" value="5">
             
-            <input type="hidden" name="artikel_name" value="Cloud-Speicher 1GB">
+            <input type="hidden" name="artikel_name" value="Cloud-Speicher 1TB">
             <input type="hidden" name="grosse" value="1 GB">
             <input type="hidden" name="base_price" value="225"> 
             

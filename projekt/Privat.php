@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privatregistrierung</title>
     <link rel="stylesheet" href="styles_Privat.css">
+      <script>
+        function checkPasswordMatch() {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirm_password").value;
+            var message = document.getElementById("passwordMessage");
+ 
+            if (password !== confirmPassword) {
+                message.style.color = "red";
+                message.textContent = "Die Passwörter stimmen nicht überein.";
+                return false;  // Verhindert das Absenden des Formulars
+            } else {
+                message.style.color = "green";
+                message.textContent = "Die Passw&ouml;rter stimmen &uuml;berein.";
+                return true;  // Das Formular wird abgesendet
+            }
+        }
+</script>
 </head>
 <body>
 
@@ -14,7 +31,8 @@
 
     <section class="register-section">
         <h2>Registrieren f&uuml;r Privatpersonen</h2>
-        <form action="insert_user_p.php" method="POST">
+         <form action="insert_user_p.php" method="POST" onsubmit="return checkPasswordMatch()">
+
 
 
 
@@ -56,6 +74,7 @@
             <div class="form-group">
                 <label for="confirm_password">Passwort wiederholen:</label>
                 <input type="password" id="confirm_password" name="confirm_password" required>
+                <div id="passwordMessage"></div>
             </div>
 
             <div class="form-group">

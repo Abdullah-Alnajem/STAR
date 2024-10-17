@@ -46,7 +46,7 @@
     <section class="cloud-storage-details">
         <h2>Details zu diesem Angebot</h2>
         <p>Kosten: 75 Euro pro Paket (3 Benutzer enthalten)</p>
-
+       
         <h3>Bestellung aufgeben</h3>
         <label for="packages">Anzahl der Pakete:</label>
         <input type="number" id="packages" value="1" min="1" onchange="calculatePrice()">

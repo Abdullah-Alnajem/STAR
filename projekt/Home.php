@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -14,7 +18,12 @@
             <button onclick="window.location.href='Anmelden.php';">Anmelden / Registrieren</button>
             <button onclick="window.location.href='AGB.php';">AGB</button>
             <button onclick="window.location.href='FAQ.php';">FAQs</button>
-            
+            <?php
+            // ?berpr?fen, ob der Benutzer eingeloggt ist und die Rolle Admin hat
+            if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin') {
+                echo '<button onclick="window.location.href=\'admin_dashboard.php\';">Admin Dashboard</button>';
+            }
+            ?>
         </nav>
     </header>
 
@@ -82,3 +91,9 @@
 
 </body>
 </html>
+<?php
+ 
+if (isset($_SESSION["username"])){
+echo "Angemeldet als " . $_SESSION["username"] . ".";
+}
+?>

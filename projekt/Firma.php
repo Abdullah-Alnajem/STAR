@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Firmenregistrierung</title>
     <link rel="stylesheet" href="styles_Firma.css">
+    <script>
+        function checkPasswordMatch() {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirm_password").value;
+            var message = document.getElementById("passwordMessage");
+ 
+            if (password !== confirmPassword) {
+                message.style.color = "red";
+                message.textContent = "Die Passw&ouml;rter stimmen nicht &uuml;berein.";
+                return false;  // Verhindert das Absenden des Formulars
+            } else {
+                message.style.color = "green";
+                message.textContent = "Die Passwörter stimmen überein.";
+                return true;  // Das Formular wird abgesendet
+            }
+        }
+</script>
 </head>
 <body>
 
@@ -14,8 +31,7 @@
 
     <section class="register-section">
         <h2>Registrieren f&uuml;r Unternehmen</h2>
-        <form action="insert_user_u.php" method="POST">
-            
+        <form action="insert_user_u.php" method="POST" onsubmit="return checkPasswordMatch()">
             <div class="form-group">
                 <label for="firma">Firmenname:</label>
                 <input type="text" id="firma" name="firma" required>
@@ -59,6 +75,7 @@
             <div class="form-group">
                 <label for="confirm_password">Passwort wiederholen:</label>
                 <input type="password" id="confirm_password" name="confirm_password" required>
+             <div id="passwordMessage"></div>
             </div>
 
             <div class="form-group">

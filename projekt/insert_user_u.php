@@ -55,7 +55,7 @@ $sql = "INSERT INTO users (user_id, vorname, nachname, role, strasse, hausnummer
 
 // Daten in die Datenbank einfügen und Erfolg prüfen
 if ($conn->query($sql) === TRUE) {
-    $_SESSION['user_id'] = $conn->insert_id; // user_id in der Sitzung speichern
+    $_SESSION['user_ID'] = $conn->insert_id; // user_id in der Sitzung speichern
     echo "Neuer Datensatz erfolgreich eingefügt!";
             // Benutzer nach erfolgreicher Registrierung weiterleiten (optional)
             header("Location: Home.php");
