@@ -18,6 +18,7 @@ session_start();
             <button onclick="window.location.href='Anmelden.php';">Anmelden / Registrieren</button>
             <button onclick="window.location.href='AGB.php';">AGB</button>
             <button onclick="window.location.href='FAQ.php';">FAQs</button>
+            <button onclick="window.location.href='Impressum.php';">Impressum</button>
             <?php
             // ?berpr?fen, ob der Benutzer eingeloggt ist und die Rolle Admin hat
             if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin') {

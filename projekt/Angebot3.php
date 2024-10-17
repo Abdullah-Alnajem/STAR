@@ -68,6 +68,11 @@
             <button type="submit">Bestellung aufgeben</button>
         </form>
     </section>
-
+<?php
+ 
+if (isset($_SESSION["username"])){
+echo "Angemeldet als " . $_SESSION["username"] . ".";
+}
+?>
 </body>
 </html>

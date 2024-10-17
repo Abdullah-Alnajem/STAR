@@ -16,7 +16,7 @@ $result = $conn->query($sql);
 if (isset($_GET['delete_artikel_id'])) {
     $Artikel_ID = $_GET['delete_artikel_id'];
     
-    // ÍÐÝ ÇáÕÝæÝ ÇáãÑÊÈØÉ Ýí ÌÏæá rechnung_details
+    // rechnung_details
     $delete_rechnung_sql = "DELETE FROM rechnung_details WHERE Artikel_ID = ?";
     $stmt = $conn->prepare($delete_rechnung_sql);
     $stmt->bind_param("i", $Artikel_ID);

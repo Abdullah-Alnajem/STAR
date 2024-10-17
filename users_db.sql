@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 16. Okt 2024 um 14:41
+-- Erstellungszeit: 17. Okt 2024 um 13:17
 -- Server-Version: 10.4.28-MariaDB
 -- PHP-Version: 8.2.4
 
@@ -42,7 +42,7 @@ CREATE TABLE `artikel` (
 
 INSERT INTO `artikel` (`Artikel_ID`, `Artikelname`, `Benutzeranzahl`, `Grosse`, `Zusatzanzahl`, `Zusatzpreis`) VALUES
 (4, 'Cloud-Speicher 10GB', 2, 10.00, 0, 0.00),
-(5, 'Cloud-Speicher 10GB', 7, 9.00, 1, 20.00),
+(5, 'Cloud-Speicher 10GB', 9, 9.00, 1, 20.00),
 (9, 'Cloud-Speicher 10GB', 5, 12.00, -7, 0.00),
 (10, 'Cloud-Speicher 10GB', 3, 10.00, 0, 0.00),
 (11, 'Cloud-Speicher 10GB', 10, 10.00, 7, 375.00),
@@ -60,7 +60,9 @@ INSERT INTO `artikel` (`Artikel_ID`, `Artikelname`, `Benutzeranzahl`, `Grosse`, 
 (23, 'Cloud-Speicher 200GB', 4, 200.00, -5, 0.00),
 (24, 'Cloud-Speicher 200GB', 5, 200.00, -4, 0.00),
 (25, 'Cloud-Speicher 200GB', 3, 200.00, 0, 0.00),
-(26, 'Cloud-Speicher 200GB', 4, 200.00, -2, 0.00);
+(26, 'Cloud-Speicher 200GB', 4, 200.00, -2, 0.00),
+(27, 'Cloud-Speicher 10GB', 1, 10.00, -14, 0.00),
+(28, 'Cloud-Speicher 1TB', 5, 1.00, 2, 0.00);
 
 -- --------------------------------------------------------
 
@@ -102,7 +104,9 @@ INSERT INTO `rechnung` (`Rechnung_ID`, `user_ID`, `Datum`) VALUES
 (32, 14, '2024-10-14 11:57:22'),
 (33, 14, '2024-10-14 15:12:21'),
 (34, 14, '2024-10-14 15:13:38'),
-(37, 14, '2024-10-14 15:25:11');
+(37, 14, '2024-10-14 15:25:11'),
+(38, 23, '2024-10-17 11:19:39'),
+(39, 6, '2024-10-17 13:16:12');
 
 -- --------------------------------------------------------
 
@@ -141,7 +145,9 @@ INSERT INTO `rechnung_details` (`Rechnung_ID`, `Artikel_ID`, `menge`, `Preis`) V
 (32, 23, 3, NULL),
 (33, 24, 3, 225.00),
 (34, 25, 1, 75.00),
-(37, 26, 2, 150.00);
+(37, 26, 2, 150.00),
+(38, 27, 5, 25.00),
+(39, 28, 1, 225.00);
 
 -- --------------------------------------------------------
 
@@ -171,11 +177,18 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_ID`, `vorname`, `nachname`, `strasse`, `hausnummer`, `PLZ_id`, `email`, `telefonnummer`, `password`, `geschlecht`, `benutzername`, `role`, `firma`, `payment_method`) VALUES
-(6, 'Sadir', 'Alahmed', 'hintermhalm', '23', '28717', 'baba_sanfor@gmail.com', '12434', '$2y$10$r/KvrIj2T8NhQ5M0/ySJqeme8xsM4yLhVIvJ7KwAvdrK3JlKfMova', 'male', 'sadiraa', 'Admin', '', NULL),
-(7, 'marc', 'hedel', 'estrewt', '43', '57657', 'marc@gmail.com', '34654747', '$2y$10$w1DM.hD4jdL4cMMiZeNHfelskHEW3CWXbUmlnu9M069UR7Mw/eZNu', '', 'marcc', 'User', '', 'paypal'),
+(6, 'Sadir', 'Alahmed', 'hintermhalm', '23', '28717', 'mhmwdjwban0@gmail.com', '12434', '$2y$10$r/KvrIj2T8NhQ5M0/ySJqeme8xsM4yLhVIvJ7KwAvdrK3JlKfMova', 'male', 'sadiraa', 'Admin', '', NULL),
+(7, 'marcc', 'hedel', 'estrewt', '43', '57657', 'marc@gmail.com', '34654747', '$2y$10$w1DM.hD4jdL4cMMiZeNHfelskHEW3CWXbUmlnu9M069UR7Mw/eZNu', '', 'marcc', 'User', '', 'paypal'),
 (8, 'SadirA', 'AlahmedD', 'hintermhalm', '23', '28717', 'baba_sanfor@gmail.con', '46758698693', '$2y$10$/Cr4MI.trUeZ76aeU.7/auTI0Q6ObXPwtDdnNHJYjmvYr3imgNsji', '', 'sadiraaa', 'User', '', 'iban'),
 (11, 'niklas', 'aa', 'safa', '44', '28717', 'niklas@ss.com', '5768769689780ß89', '$2y$10$dosB4sjynoIMIJnZQHuTpe1LM2I4rp2OlRniazmLwNPllCUCfpJkW', '', 'niklass', 'User', '', 'paypal'),
-(14, 'gfg', 'hgj', '22', '33', '55656', 'mog@gmail.com', '3erwet', '$2y$10$JlXJKTLkPFZNs6Kaptt8Ne9XJESZjNquW/f0zaqCENbcSkIhKq22O', '', 'hgh', 'User', 'ddd', 'iban');
+(14, 'gfg', 'hgj', '22', '33', '55656', 'mog@gmail.com', '3erwet', '$2y$10$JlXJKTLkPFZNs6Kaptt8Ne9XJESZjNquW/f0zaqCENbcSkIhKq22O', '', 'hgh', 'User', 'ddd', 'iban'),
+(16, '131', '12312', '111', '111', '11', 'kke@kk.de', '111', '$2y$10$6xcanEuTROssVKV3QR2.xO7FNd/2X7fAYgdZa1VDl/yakl38sCOKK', '', '12', 'User', '', 'iban'),
+(17, 'lll', 'llkk', '123', '123', '2222', 'e@de.de', '1231', '$2y$10$9NLXb88RcP5EJ5PRwahBMObf1sbYK31MkogOnTsfwaf4qjfhOt1rC', '', 'jjju', 'User', '', 'iban'),
+(18, 'jkkk', '2222', '12', '1222', '22321', 'o@w.de', '11123', '$2y$10$aOWU/YHLXbDLbBfETmd66Oxxq23MPMoASV1ZHVW9pcYfw6EKrHduS', '', '2222', 'User', '11333', 'iban'),
+(19, 'marc', 'ikkkkk', 'str', '1', '1', 'marc@gmx.de', '2', '$2y$10$u.A5IVz6JEOXy/V8eNokI.WSPBWwFzP9ZhUxr.aJlb6N/t5AqIdD2', '', '', 'User', '', 'paypal'),
+(20, 'margg', 'gg', 'str', '22', '23123', 'gg@gmx.de', '12312', '$2y$10$ThBPYF6UhZf84dk5dLVefukYkRz.5vVXnRbK/RAdZ1vwU743H.QAm', '', 'gg', 'User', '', 'iban'),
+(21, 'Benutzerr', 'Sternchen', 'str2', '11', '23123', 'benutzer@sternchen.de', '11111', '$2y$10$XhZwquBukalXXQegyH.t8eFCacoaFR31Em3uIBSbUI.Tk6HrAW82m', '', 'stern', 'User', '', 'iban'),
+(23, 'tami', 'tom', 'str', '222', '123', 'marc.hedel@gmx.de', '1232', '$2y$10$1BxFxz6.cLyvMwWUuQn1tOR0b3qo5DQ7Y/t4o7q5RtKVncOtHnAn.', '', 'tamtom', 'User', '', 'iban');
 
 --
 -- Indizes der exportierten Tabellen
@@ -215,19 +228,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT für Tabelle `artikel`
 --
 ALTER TABLE `artikel`
-  MODIFY `Artikel_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `Artikel_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT für Tabelle `rechnung`
 --
 ALTER TABLE `rechnung`
-  MODIFY `Rechnung_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `Rechnung_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT für Tabelle `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Constraints der exportierten Tabellen
